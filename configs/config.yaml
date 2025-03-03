@@ -1,0 +1,34 @@
+model:
+  name: "Transformer-1B"
+  d_model: 2048
+  num_layers: 24
+  num_heads: 16
+  d_ff: 8192
+  dropout: 0.1
+  vocab_size: 50257
+  max_seq_length: 2048
+
+dataset:
+  name: "the_pile"
+  path: "./data/the_pile"
+  batch_size: 16
+  num_workers: 4
+  shuffle: true
+
+training:
+  epochs: 10
+  learning_rate: 3e-4
+  weight_decay: 0.01
+  warmup_steps: 10000
+  gradient_accumulation_steps: 8
+  log_interval: 50
+  save_interval: 5000
+  save_dir: "./checkpoints"
+
+logging:
+  log_dir: "./logs"
+  log_file: "training_log.csv"
+
+device:
+  use_gpu: true
+  mixed_precision: true
